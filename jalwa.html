@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jalwa Premium Prediction</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #0f172a;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  /* Background iframe */
+  #backgroundFrame {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 0;
+  }
+
+  /* Floating premium icon */
+  #floatingIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#6366f1,#8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(99,102,241,0.5);
+    transition: transform .2s;
+  }
+  #floatingIcon:hover { transform: scale(1.1); }
+  #floatingIcon span {
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  /* Dialog box */
+  #dialogBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.8);
+    background: rgba(17,25,40,0.9);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+  }
+  #dialogBox.show {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+    pointer-events: auto;
+  }
+
+  #dialogBox h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  #periodNumber {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 6px;
+  }
+
+  #resultText {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 8px 0;
+  }
+  .big { color: #22c55e; }
+  .small { color: #ef4444; }
+
+  #timerText {
+    font-size: 14px;
+    color: #eab308;
+    margin-bottom: 10px;
+  }
+
+  /* Footer link */
+  .footer {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    color: #60a5fa;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .footer:hover { opacity: .8; }
+  .footer svg {
+    width: 18px; height: 18px;
+    fill: #60a5fa;
+  }
+
+  /* Close button */
+  #closeBtn {
+    position: absolute;
+    top: 8px; right: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #9ca3af;
+  }
+  #closeBtn:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- Background -->
+<iframe id="backgroundFrame" src="https://www.jalwagameapp1.com/#/register?invitationCode=61158859216"></iframe>
+
+<!-- Floating premium button -->
+<div id="floatingIcon"><span>★</span></div>
+
+<!-- Dialog box -->
+<div id="dialogBox">
+  <div id="closeBtn">✖</div>
+  <h3>Jalwa Premium</h3>
+  <div id="periodNumber">Period: --</div>
+  <div id="resultText">--</div>
+  <div id="timerText">00:59</div>
+
+  <!-- Footer Telegram -->
+  <div class="footer" onclick="window.open('https://telegram.me/apkmodderkings','_blank')">
+    <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <path d="M120 0C53.7 0 0 53.7 0 120s53.7 120 120 120 120-53.7 120-120S186.3 0 120 0zm57.1 77.1l-22.6 106.3c-1.7 8-6.2 10-12.5 6.2l-34.7-25.6-16.7 16.1c-1.8 1.8-3.4 3.4-6.9 3.4l2.5-35.3 64.2-58c2.8-2.5-.6-3.9-4.3-1.4L77.4 120.5 44.9 104.7c-8-2.7-8.2-8 1.7-11.7l122.1-42.9c7.4-2.1 13.6 1.8 8.4 7.9z"/>
+    </svg>
+    Apkmodderkings
+  </div>
+</div>
+
+<script>
+  let floatingIcon = document.getElementById("floatingIcon");
+  let dialogBox = document.getElementById("dialogBox");
+  let timerText = document.getElementById("timerText");
+  let resultText = document.getElementById("resultText");
+  let periodNumber = document.getElementById("periodNumber");
+  let closeBtn = document.getElementById("closeBtn");
+
+  floatingIcon.onclick = () => { dialogBox.classList.add("show"); };
+  closeBtn.onclick = () => { dialogBox.classList.remove("show"); };
+
+  function updatePeriodAndTimer() {
+    let now = new Date();
+    let year = now.getUTCFullYear();
+    let month = String(now.getUTCMonth() + 1).padStart(2, '0');
+    let day = String(now.getUTCDate()).padStart(2, '0');
+    let hours = now.getUTCHours();
+    let minutes = now.getUTCMinutes();
+    let totalMinutes = hours * 60 + minutes;
+
+    // Period number logic
+    let periodNum = `${year}${month}${day}1000${10001 + totalMinutes}`;
+    periodNumber.innerText = "Period: " + periodNum;
+
+    // BIG / SMALL logic
+    let lastTwoDigits = periodNum.slice(-2);
+    let sum = [...lastTwoDigits].reduce((a, b) => a + parseInt(b), 0);
+    if (sum > 9) sum = [...String(sum)].reduce((a, b) => a + parseInt(b), 0);
+
+    let result = sum >= 5 ? "BIG" : "SMALL";
+    resultText.innerHTML = `<span class="${sum >= 5 ? 'big' : 'small'}">${result}</span>`;
+
+    // Timer
+    let seconds = now.getUTCSeconds();
+    let remainingSeconds = 60 - seconds;
+    timerText.innerText = "00:" + String(remainingSeconds).padStart(2, '0');
+  }
+
+  setInterval(updatePeriodAndTimer, 1000);
+  updatePeriodAndTimer();
+</script>
+
+</body>
+</html>
